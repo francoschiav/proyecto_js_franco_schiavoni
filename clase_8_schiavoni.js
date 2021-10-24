@@ -52,10 +52,10 @@ console.log("Cantidad de pozos a cargar"+ "= " + cantPozos);
         let padre  = document.getElementById ("h3DePozos");
         for(let elementodelarray of presupuestos){
             let cadaPresupuesto = document.createElement("h3")
-            cadaPresupuesto.innerHTML =  "Pozo  " + elementodelarray.pozo + "; " + "valor [USD]:  $"+ elementodelarray.valor; 
+            cadaPresupuesto.innerHTML =  "Pozo:  " + elementodelarray.pozo + "; " + "Valor: USD "+ elementodelarray.valor; 
             padre.appendChild (cadaPresupuesto)
             // document.body.appendChild (cadaPresupuesto);
             }
 
     let tituloPrincipalIndex = document.getElementById ("tituloPrincipalIndex");
-    tituloPrincipalIndex.innerHTML = "El presupuesto ingresado es de [USD]: $" + presupuestoTotal;     
+    tituloPrincipalIndex.innerHTML = "El presupuesto total ingresado es de: USD " + presupuestoTotal;     
