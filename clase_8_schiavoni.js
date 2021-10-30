@@ -58,4 +58,56 @@ console.log("Cantidad de pozos a cargar"+ "= " + cantPozos);
             }
 
     let tituloPrincipalIndex = document.getElementById ("tituloPrincipalIndex");
-    tituloPrincipalIndex.innerHTML = "El presupuesto total ingresado es de: USD " + presupuestoTotal;     
+    tituloPrincipalIndex.innerHTML = "El presupuesto total ingresado es de: USD " + presupuestoTotal;    
+
+// -----------------EVENTOS-----------------------------
+    let boton = document.getElementById ("botonIngresar");
+    boton.addEventListener ("click", respuestaClick);
+
+    function respuestaClick () {
+
+        presupuestoTotalNuevo = presupuestoTotal;
+
+        cantPozos = prompt ("Ahora ingrese la nueva cantidad de pozos a cargar: ");
+        if(cantPozos == ""){
+            cantPozos=prompt("No ha ingresado ninguna cantidad. Por favor, Ingrese la nueva cantidad de pozos a cargar: ");    
+        }
+
+        class Presupuesto{
+            constructor (pozo,valor){
+                this.pozo = pozo;
+                this.valor = parseInt(valor);
+                }
+                detallarPresupuestos(){
+                    console.log("presupuesto " + this.pozo+ "=  $" + this.valor); 
+                }
+            
+        }
+
+        const presupuestos = [];
+
+        for (i =1; i<= cantPozos; i++){
+            presupuestos.push (new Presupuesto (prompt("Nombre del pozo: "), parseInt(prompt("Ingrese valor del pozo: "))));
+        }
+
+        for(let elementodelarray of presupuestos){
+        elementodelarray.detallarPresupuestos();
+        }
+
+        for(let elementodelarray of presupuestos){
+            presupuestoTotalNuevo = presupuestoTotalNuevo + elementodelarray.valor;
+            }
+ 
+
+          let padre  = document.getElementById ("h3DePozos");
+          for(let elementodelarray of presupuestos){
+              let cadaPresupuesto = document.createElement("h3")
+              cadaPresupuesto.innerHTML =  "Pozo:  " + elementodelarray.pozo + "; " + "Valor: USD "+ elementodelarray.valor; 
+              padre.appendChild (cadaPresupuesto)
+              // document.body.appendChild (cadaPresupuesto);
+              }
+  
+        let tituloPrincipalIndex = document.getElementById ("tituloPrincipalIndex");
+        tituloPrincipalIndex.innerHTML = "El presupuesto total ingresado es de: USD " + presupuestoTotalNuevo;  
+            
+        }
