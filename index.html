@@ -57,15 +57,15 @@
           <li class="nav-item">
             <a class="nav-link letraNav" href="#">Contacto</a>
           </li>
-          <li class="nav-item pe-3 pt-1">
+          <!-- <li class="nav-item pe-3 pt-1">
             <a id="botonIngresar" class="btn btn-primary" href="#" role="button">Agregar Pozos</a>
-          </li>
-          <li class="nav-item pe-3 pt-1">
+          </li> -->
+          <!-- <li class="nav-item pe-3 pt-1">
             <a id="botonMostrarPresupuesto" class="btn btn-warning" href="#" role="button">Mostrar Presupuesto</a>
-          </li>
-          <li class="nav-item pe-3 pt-1">
+          </li> -->
+          <!-- <li class="nav-item pe-3 pt-1">
             <a id="botonBorrar" class="btn btn-danger" href="#" role="button">Borrar Pozos Cargados</a>
-          </li>
+          </li> -->
         
          
         </ul>
@@ -75,18 +75,63 @@
   </nav>
 
 <!-- Slogan -->
+
 <!-- Quito los data-aos = "face-up" -->
+
 <section class="mainIndex">
   <div class="container">
     <div class="row justify-content-evenly">
 
-      <h2 id="tituloPrincipalIndex" class="col-sm-12 col-md-7 align-self-center slogan mb-4 text-center">Una empresa de servicios para la industria petrolera nacida en la Patagonia, Argentina</h2>
-      <h3 class="col-sm-12 col-md-7 align-self-center slogan mb-2">Cronograma de Pozos:</h3>
+      <!--------------------------FORM------- -->
+      
+      <form class="row gy-2 gx-3 align-items-center zindexeado ms-5">
+        <label for="formFile" class="form-label text-white">Ingrese cada pozo del cronograma:</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Pozo</span>
+          </div>
+          <div>
+            <label class="visually-hidden" for="autoSizingInput">Name</label>
+            <input id="nombrePozo" type="text" required class="form-control" />
+          </div>
+        </div>
+
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text">USD:</span>
+          </div>
+          <div>
+            <label class="visually-hidden" for="autoSizingInput">Name</label>
+            <input id="precioPozo" type="text" required class="form-control" placeholder="0.00" />
+          </div>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        <div class="col-auto">
+          <button id="botonMostrarPresupuesto" type="button" class="btn btn-warning">Mostrar Presupuesto</button>
+        </div>
+  
+        <div class="col-auto">
+          <button id="botonBorrar" type="button" class="btn btn-danger" href="#" >Borrar Pozos Cargados</button>
+        </div>
+        
+      </form>
+ 
+   
+      <!---------------------FORM------- -->
+
+      <h2 id="tituloPrincipalIndex" class="col-sm-12 col-md-7 align-self-center slogan mb-4 text-center"></h2>
+      <!-- <h2 id="tituloPrincipalIndex" class="col-sm-12 col-md-7 align-self-center slogan mb-4 text-center">Una empresa de servicios para la industria petrolera nacida en la Patagonia, Argentina</h2> -->
+      <!-- <h3 class="col-sm-12 col-md-7 align-self-center slogan mb-2">Cronograma de Pozos:</h3> -->
 
       <div id="padreCronograma" class="col-sm-12 col-md-7 align-self-center slogan mb-4">
           <div id="h3DePozos" class="col-sm-12 col-md-7 align-self-center slogan mb-4">
           </div>
       </div>
+      
       <!-- <div class="col-sm-12 col-md-6 align-self-center slogan">
         <h2 id="tituloPrincipalIndex" class="text-center" data-aos="fade-up">Una empresa de servicios para la industria petrolera nacida en la Patagonia, Argentina</h2>
       </div> -->
