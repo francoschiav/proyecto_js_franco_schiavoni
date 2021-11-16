@@ -10,14 +10,13 @@ class Presupuesto{
 }
 
 $("form").submit (function(e){
-  
     e.preventDefault();
-        presupuestos.push (new Presupuesto ($("#nombrePozo").val(), $("#precioPozo").val()));
+     presupuestos.push (new Presupuesto ($("#nombrePozo").val(), $("#precioPozo").val()));
 
         const guardarLocalValores = (clave, valor) => {localStorage.setItem(clave,valor)};
         guardarLocalValores ($("#nombrePozo").val(), $("#precioPozo").val());
 
-        $("#h3DePozos").append(`<h3>Pozo: ${$("#nombrePozo").val()}; Valor: USD ${$("#precioPozo").val()}</h3>`);
+        $("#h3DePozos").html(`<h3>Pozo: ${$("#nombrePozo").val()}; Valor: USD ${$("#precioPozo").val()}</h3>`);
        
 }) 
 
@@ -40,8 +39,8 @@ $("form").submit (function(e){
             }
             $("#tituloPrincipalIndex").html(`El presupuesto total ingresado es de: USD ${sumaAlApretarBoton}`);
          })
-     
-       
+         
+// ------------------------------BOTON MOSTRAR PRESUPUESTO CON JQUERY-------------     
 
 
 // -------------------------------BOTON BORRAR CON JQUERY-------------
@@ -52,5 +51,5 @@ $("#botonBorrar").click (function(e){
     localStorage.clear();
 })
 
-
+//---------------------------- BOTON BORRAR CON JQUERY----------------
 

@@ -51,6 +51,7 @@
     color: #dcdde1;
     font-weight: bold;
   }
+  
 
   .mainIndex h3 {
     font-size: 1.5em;
@@ -87,14 +88,3 @@
     color: #ffffff;
     text-decoration: none;
   }
-
-  /* for(let elementodelarray of presupuestos){
-    let cadaPresupuesto = document.createElement("h3")
-    cadaPresupuesto.innerHTML = "El presupuesto ingresado es de $ " + elementodelarray.valor; 
-    document.body.appendChild (cadaPresupuesto);
-    }
-
-
-  let tituloPrincipalIndex = document.getElementById ("tituloPrincipalIndex");
-     tituloPrincipalIndex.innerHTML = "El presupuesto ingresado es de $ " + presupuestoTotal; 
-     document.body.appendChild (tituloPrincipal); */
