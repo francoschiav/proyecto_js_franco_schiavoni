@@ -53,3 +53,19 @@ $("#botonBorrar").click (function(e){
 
 //---------------------------- BOTON BORRAR CON JQUERY----------------
 
+// -----------------AJAX
+
+let URLPRACTICA = "http://hp-api.herokuapp.com/api/characters";
+$("#botonAjax").click (function(){
+    $.get(URLPRACTICA, function(datos){
+      
+            $(".mainIndex").append (`<div>
+                                <img src= "${datos[0].image}"> </img>
+                                </div>`)
+
+                       
+                
+            
+        })
+    }
+);
