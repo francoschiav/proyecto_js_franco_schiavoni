@@ -1,4 +1,4 @@
-// Corrección con FORM
+
 let sumaAlApretarBoton = 0;
 let presupuestoTotal = 0;
 const presupuestos = [];
@@ -9,17 +9,21 @@ class Presupuesto{
     }     
 }
 
+// -------------------------Botón submit con jQuery------------------------------------
+
 $("form").submit (function(e){
     e.preventDefault();
+    $( "#botonBorrar" ).show();
+    $( "#botonMostrarPresupuesto" ).show();
      presupuestos.push (new Presupuesto ($("#nombrePozo").val(), $("#precioPozo").val()));
 
         const guardarLocalValores = (clave, valor) => {localStorage.setItem(clave,valor)};
         guardarLocalValores ($("#nombrePozo").val(), $("#precioPozo").val());
 
         $("#h3DePozos").html(`<h3>Pozo: ${$("#nombrePozo").val()}; Valor: USD ${$("#precioPozo").val()}</h3>`);
-       
 }) 
 
+// -------------------------Finalización Botón submit con jQuery------------------------------------
 
          // ------------------------------BOTON MOSTRAR PRESUPUESTO CON JQUERY-------------
 
@@ -37,35 +41,35 @@ $("form").submit (function(e){
                 sumaAlApretarBoton = sumaAlApretarBoton  + claveParseada; 
                 console.log(typeof sumaAlApretarBoton );
             }
-            $("#tituloPrincipalIndex").html(`El presupuesto total ingresado es de: USD ${sumaAlApretarBoton}`);
+            
+            $("#tituloPrincipalIndex").html(`El presupuesto total ingresado es de: USD ${sumaAlApretarBoton}`).hide().fadeIn(1500);
          })
          
-// ------------------------------BOTON MOSTRAR PRESUPUESTO CON JQUERY-------------     
+// ------------------------------FINALIZACIÓN BOTON MOSTRAR PRESUPUESTO CON JQUERY-------------     
 
 
 // -------------------------------BOTON BORRAR CON JQUERY-------------
 $("#botonBorrar").click (function(e){
     e.preventDefault();
-    $("#tituloPrincipalIndex").html(`Gracias por utilizar el servicio.`);
+    $("#tituloPrincipalIndex").html(`Gracias por utilizar el servicio.`).hide().fadeIn(1500);
     $("#h3DePozos").empty();
     localStorage.clear();
+    $("#h3DePozos").prepend (`<div id="div1">
+                                <h3> Borrado correctamente </h3>
+                                </div>`);
+   $("#div1").hide().fadeIn(1500);    
+             
+   $( "#botonBorrar" )
+      .animate({
+        height: "toggle",
+        opacity: "toggle"
+      })
+      $( "#botonMostrarPresupuesto" )
+      .animate({
+        height: "toggle",
+        opacity: "toggle"
+      })
 })
 
-//---------------------------- BOTON BORRAR CON JQUERY----------------
+// -------------------------------FINALIZACIÓN BOTON BORRAR CON JQUERY-------------
 
-// -----------------AJAX
-
-let URLPRACTICA = "http://hp-api.herokuapp.com/api/characters";
-$("#botonAjax").click (function(){
-    $.get(URLPRACTICA, function(datos){
-      
-            $(".mainIndex").append (`<div>
-                                <img src= "${datos[0].image}"> </img>
-                                </div>`)
-
-                       
-                
-            
-        })
-    }
-);
