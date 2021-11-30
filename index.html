@@ -46,16 +46,10 @@
             <a class="nav-link active letraNav" aria-current="page" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link letraNav" href="#">Empresa</a>
+            <a class="nav-link letraNav" href="historial.html">Historial</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link letraNav" href="#">Servicios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link letraNav" href="#">Equipos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link letraNav" href="#">Contacto</a>
+            <a class="nav-link letraNav" href="contacto.html">Contacto</a>
           </li>
           <!-- <li class="nav-item pe-3 pt-1">
             <a id="botonIngresar" class="btn btn-primary" href="#" role="button">Agregar Pozos</a>
@@ -80,14 +74,17 @@
 
 <section class="mainIndex">
   <div class="container">
-    <div class="row justify-content-evenly">
+    <div class="row justify-content-center align-items-center">
+    
+
+     
  
 
       <!--------------------------FORM------- -->
       
-      <form class="row gy-2 gx-3 align-items-center zindexeado ms-5">
-        <label id="ingrese" for="formFile" class="form-label text-white">Ingrese cada pozo del cronograma:</label>
-        <div class="input-group">
+      <form class="row justify-content-center align-items-center  zindexeado ">
+        <label id="ingrese" for="formFile" class="col-md-4 form-label text-white">Ingrese cada pozo para elaborar el presupuesto. El nombre admite formato de letras y números. Ejemplo: LH-234</label>
+        <div class="input-group justify-content-center">
           <div class="input-group-prepend">
               <span class="input-group-text">Pozo</span>
           </div>
@@ -98,7 +95,7 @@
         </div>
 
 
-        <div class="input-group">
+        <div class="input-group justify-content-center">
           <div class="input-group-prepend">
               <span class="input-group-text">USD:</span>
           </div>
@@ -110,21 +107,20 @@
         <div class="col-auto">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-
-        <div class="col-auto">
+<!-- boton mostrar -->
+        <!-- <div class="col-auto">
           <button id="botonMostrarPresupuesto" type="button" class="btn btn-warning">Mostrar Presupuesto</button>
-        </div>
-  
-        <div class="col-auto">
+        </div> -->
+  <!-- boton borrar -->
+        <!-- <div class="col-auto">
           <button id="botonBorrar" type="button" class="btn btn-danger" href="#" >Borrar Pozos Cargados</button>
-        </div>
+        </div> -->
         
         <!-- <div class="col-auto">
           <button id="botonAjax" type="button" class="btn btn-secondary" href="#" >Miralo a Harry</button>
         </div> -->
+</form>
 
-      </form>
- 
    
       <!---------------------FORM------- -->
 
@@ -143,6 +139,20 @@
 
     </div>
   </div>
+
+  <div class="container">
+    <div class="row justify-content-center align-items-center zindexeado ">
+          
+          <label class="form-label text-white mt-2 zindexeado col-md-4">Finalizada la carga de pozos, presione el siguiente botón para conocer el presupuesto final del cronograma ingresado:</label>
+          <div class="row justify-content-center align-items-center zindexeado">
+             <div class="col-auto zindexeado">
+                  <button id="btnPresFinal" class="btn btn-primary mt-2" type="button">presupuesto final</button>
+            </div>
+          </div>
+           
+    </div>
+  </div>
+
 </section>
 
 
