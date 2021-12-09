@@ -2,6 +2,7 @@
 let sumaAlApretarBoton = 0;
 let presupuestoTotal = 0;
 let pozos = [];
+
 class Pozo {
   constructor(nombre, valor) {
     this.nombre = nombre;
@@ -12,24 +13,22 @@ class Pozo {
 const guardarLocalValores = (clave, valor) => {
   localStorage.setItem(clave, valor);
 };
-
+// let array1 = [5, 12, 8, 130, 44];
+// let found = array1.find(element => element > 10);
+// console.log(found);
 
 $("form").submit(addPozo);
 
 function addPozo(e) {
   e.preventDefault();
- 
-  pozos.push(new Pozo($("#nombrePozo").val(), $("#precioPozo").val()));
-
-  guardarLocalValores("arrayPresFinal", JSON.stringify(pozos));
-  presupuestoTotal = presupuestoTotal + JSON.parse($("#precioPozo").val()) ;
-  $("#presupuestoTotal").hide().html(`<div id="div3" class="text-light">  <h3>Presupuesto Total: ${presupuestoTotal} </h3>  </div>`);
-
-  $("#h3DePozos").append(
-    `<h3>Pozo: ${$("#nombrePozo").val()}; Valor: USD ${$(
-      "#precioPozo"
-    ).val()}</h3>`);
-}
+    pozos.push(new Pozo($("#nombrePozo").val(), $("#precioPozo").val()));
+    presupuestoTotal = presupuestoTotal + JSON.parse($("#precioPozo").val()) ;
+    $("#presupuestoTotal").hide().html(`<div id="div3" class="text-light">  <h3>Presupuesto Total: ${presupuestoTotal} </h3>  </div>`)
+    $("#h3DePozos").append(
+      `<h3>Pozo: ${$("#nombrePozo").val()}; Valor: USD ${$(
+        "#precioPozo"
+      ).val()}</h3>`);
+ }
 
 
 let i = 0;
