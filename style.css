@@ -65,6 +65,8 @@
     z-index: 100;
   }
 
+  
+
 /* HEADER */
 .logo{
     cursor: pointer;
@@ -130,4 +132,16 @@ header{
   border-color: white;
   margin-left: 15px;
   border-radius: 5px;
+}
+
+.seccionHistorial {
+  background-size: cover;
+}
+
+.seccionHistorial h2 {
+  font-size: 3em;
+  text-align: center;
+  color: #dcdde1;
+  font-weight: bold;
+  text-align: left;
 }

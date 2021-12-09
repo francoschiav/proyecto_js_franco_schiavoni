@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
  <!-- Link para uso de animations on scroll (AOS)    -->
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
  <!-- Link de mi style.css    -->
 <link rel="stylesheet" href="style.css">
 </head>
@@ -46,22 +47,11 @@
             <a class="nav-link active letraNav" aria-current="page" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link letraNav" href="historial.html">Historial</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link letraNav" href="contacto.html">Contacto</a>
           </li>
-          <!-- <li class="nav-item pe-3 pt-1">
-            <a id="botonIngresar" class="btn btn-primary" href="#" role="button">Agregar Pozos</a>
-          </li> -->
-          <!-- <li class="nav-item pe-3 pt-1">
-            <a id="botonMostrarPresupuesto" class="btn btn-warning" href="#" role="button">Mostrar Presupuesto</a>
-          </li> -->
-          <!-- <li class="nav-item pe-3 pt-1">
-            <a id="botonBorrar" class="btn btn-danger" href="#" role="button">Borrar Pozos Cargados</a>
-          </li> -->
-        
-         
+          <li class="nav-item">
+            <button id="btnHistorial" class="btn btn-primary zindexeado mt-1">Historial</button>
+          </li>
         </ul>
 
       </div>
@@ -74,85 +64,96 @@
 
 <section class="mainIndex">
   <div class="container">
-    <div class="row justify-content-center align-items-center">
-    
-
-     
- 
-
-      <!--------------------------FORM------- -->
-      
-      <form class="row justify-content-center align-items-center  zindexeado ">
-        <label id="ingrese" for="formFile" class="col-md-4 form-label text-white">Ingrese cada pozo para elaborar el presupuesto. El nombre admite formato de letras y números. Ejemplo: LH-234</label>
-        <div class="input-group justify-content-center">
-          <div class="input-group-prepend">
-              <span class="input-group-text">Pozo</span>
-          </div>
-          <div>
-            <label class="visually-hidden" for="autoSizingInput">Name</label>
-            <input id="nombrePozo" type="text" required class="form-control" />
-          </div>
-        </div>
+    <div class="row">
+      <div class="col">
+            <!-----------------------FORM------- -->
+                    <form class="row zindexeado col-auto">
+                              <label id="ingrese" for="formFile" class=" form-label text-white fs-3 zindexeado">Ingrese cada pozo para elaborar el presupuesto. El nombre admite formato de letras y números. Ejemplo: LH-234</label>
+                              <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Pozo</span>
+                                </div>
+                                <div>
+                                  <label class="visually-hidden" for="autoSizingInput">Name</label>
+                                  <input id="nombrePozo" type="text" required class="form-control" />
+                                </div>
+                              </div>
 
 
-        <div class="input-group justify-content-center">
-          <div class="input-group-prepend">
-              <span class="input-group-text">USD:</span>
-          </div>
-          <div>
-            <label class="visually-hidden" for="autoSizingInput">Name</label>
-            <input id="precioPozo" type="text" required class="form-control" placeholder="0.00" />
-          </div>
-        </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-<!-- boton mostrar -->
-        <!-- <div class="col-auto">
-          <button id="botonMostrarPresupuesto" type="button" class="btn btn-warning">Mostrar Presupuesto</button>
-        </div> -->
-  <!-- boton borrar -->
-        <!-- <div class="col-auto">
-          <button id="botonBorrar" type="button" class="btn btn-danger" href="#" >Borrar Pozos Cargados</button>
-        </div> -->
-        
-        <!-- <div class="col-auto">
-          <button id="botonAjax" type="button" class="btn btn-secondary" href="#" >Miralo a Harry</button>
-        </div> -->
-</form>
+                              <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">USD:</span>
+                                </div>
+                                <div>
+                                  <label class="visually-hidden" for="autoSizingInput">Name</label>
+                                  <input id="precioPozo" type="text" required class="form-control" placeholder="0.00" />
+                                </div>
+                              </div>
+                              <div class="col-auto zindexeado">
+                                <button type="submit" class="btn btn-primary zindexeado mt-1">Submit</button>
+                              </div>
+                      </form>  
+            <!---------------------FORM------- -->
+                    <!-- La parte de presupuesto final: -->
+                    <div class="row zindexeado col-auto">
+                        <label class="form-label text-white fs-3 mt-4  zindexeado ">Finalizada la carga de pozos, presione el siguiente botón para conocer el presupuesto final del cronograma ingresado:</label>
+                    </div>
+                    
+                    <div class="row  ">
+                        <div class="col-auto zindexeado ">
+                              <button id="btnPresFinal" class="btn btn-primary mt-1" type="button">Presupuesto Total</button>
+                        </div>
+                    </div>
+                    <!-- La parte de presupuesto final: -->
 
-   
-      <!---------------------FORM------- -->
+                    <div class="row zindexeado col-auto">
+                      <label class="form-label text-white fs-3 mt-4  zindexeado ">Si desea ver el historial de presupuestos haga click en <strong class="bg-dark">Historial</strong>  en el menú. El mismo se desplegará en la sección inferior de la página.</label>
+                  </div>
 
-      <h2 id="tituloPrincipalIndex" class="col-sm-12 col-md-7 align-self-center slogan mb-4 text-center"></h2>
-      <!-- <h2 id="tituloPrincipalIndex" class="col-sm-12 col-md-7 align-self-center slogan mb-4 text-center">Una empresa de servicios para la industria petrolera nacida en la Patagonia, Argentina</h2> -->
-      <!-- <h3 class="col-sm-12 col-md-7 align-self-center slogan mb-2">Cronograma de Pozos:</h3> -->
-
-      <div id="padreCronograma" class="col-sm-12 col-md-7 align-self-center slogan mb-4">
-          <div id="h3DePozos" class="col-sm-12 col-md-7 align-self-center slogan mb-4">
-          </div>
       </div>
-      
-      <!-- <div class="col-sm-12 col-md-6 align-self-center slogan">
-        <h2 id="tituloPrincipalIndex" class="text-center" data-aos="fade-up">Una empresa de servicios para la industria petrolera nacida en la Patagonia, Argentina</h2>
-      </div> -->
+
+      <div class="col zindexeado">
+            <div id="padreCronograma" class=" align-self-center slogan mb-4">
+              <h3 id="presupuestoTotal" class="text-light slogan"></h3>
+              <div id="h3DePozos" class=" align-self-center slogan mb-4">
+             
+              </div>
+            </div>
+      </div>
 
     </div>
-  </div>
 
-  <div class="container">
-    <div class="row justify-content-center align-items-center zindexeado ">
+    <!-- La parte de presupuesto final: -->
+            <!-- <label class="form-label text-white mt-2  zindexeado col-md-4">Finalizada la carga de pozos, presione el siguiente botón para conocer el presupuesto final del cronograma ingresado:</label>
+            <div class="row zindexeado ">
+              <div class="col-auto zindexeado ">
+                    <button id="btnPresFinal" class="btn btn-primary mt-2" type="button">presupuesto final</button>
+              </div>
+            </div> -->
+    <!-- La parte de presupuesto final: -->
+
+  </div> 
+  <!-- finalización container -->
+
+
+  <!-- <div class="container ">
+    <div class="row  ">
           
-          <label class="form-label text-white mt-2 zindexeado col-md-4">Finalizada la carga de pozos, presione el siguiente botón para conocer el presupuesto final del cronograma ingresado:</label>
-          <div class="row justify-content-center align-items-center zindexeado">
-             <div class="col-auto zindexeado">
+          <label class="form-label text-white mt-2  zindexeado col-md-4">Finalizada la carga de pozos, presione el siguiente botón para conocer el presupuesto final del cronograma ingresado:</label>
+          <div class="row zindexeado ">
+             <div class="col-auto zindexeado ">
                   <button id="btnPresFinal" class="btn btn-primary mt-2" type="button">presupuesto final</button>
             </div>
           </div>
            
     </div>
-  </div>
+  </div> -->
 
+</section>
+
+<section id="seccionHistorialId" class="bg-dark seccionHistorial">
+    <!-- <h2 class="text-light mb-0 pb-0 pt-3 ms-3">Historial</h2> -->
+    <div id="h3Historial" class="align-self-center text-light"><div>
 </section>
 
 

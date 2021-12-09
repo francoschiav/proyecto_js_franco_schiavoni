@@ -1,104 +1,106 @@
 
 let sumaAlApretarBoton = 0;
 let presupuestoTotal = 0;
-const pozos = [];
-class Pozo{
-    constructor (nombre,valor){
-        this.nombre = nombre;
-        this.valor = parseInt(valor);
-    }     
+let pozos = [];
+class Pozo {
+  constructor(nombre, valor) {
+    this.nombre = nombre;
+    this.valor = parseInt(valor);
+  }
 }
 
-var arrayPresFinal = [];
-var guardados = [];
+const guardarLocalValores = (clave, valor) => {
+  localStorage.setItem(clave, valor);
+};
 
 
-// -------------------------Botón submit con jQuery------------------------------------
+$("form").submit(addPozo);
 
-$("form").submit (addPozo);
-  
-  function addPozo(e){
-    e.preventDefault();
-    // $( "#botonBorrar" ).show();
-    // $( "#botonMostrarPresupuesto" ).show();
-     pozos.push (new Pozo ($("#nombrePozo").val(), $("#precioPozo").val()));
-
-        const guardarLocalValores = (clave, valor) => {localStorage.setItem(clave,valor)};
-        guardarLocalValores ($("#nombrePozo").val(), $("#precioPozo").val());
-
-        $("#h3DePozos").html(`<h3>Pozo: ${$("#nombrePozo").val()}; Valor: USD ${$("#precioPozo").val()}</h3>`);
-
-    
-    // var presFinal = JSON.parse(localStorage ["arrayPresFinal"]);
-    
-  }
-// -------------------------Botón submit con jQuery------------------------------------
-
-//Llenar la lista de pozos trayendo info del local storage
-$("#btnPresFinal").click (addPresFinal)
-function addPresFinal(e){
+function addPozo(e) {
   e.preventDefault();
-  arrayPresFinal.push (pozos);
-  localStorage.setItem('arrayPresFinal', JSON.stringify(arrayPresFinal));
-  guardados.push (arrayPresFinal);
-  localStorage.setItem('guardados', JSON.stringify(guardados));
-  for (let i=0; i<arrayPresFinal.length;i++){
-    localStorage.removeItem("arrayPresFinal[i]");
-  }
-  arrayPresFinal = [];
+ 
+  pozos.push(new Pozo($("#nombrePozo").val(), $("#precioPozo").val()));
 
-//  $("#h3Historial").html(`JSON.parse(localStorage.getItem('guardados'))`)
+  guardarLocalValores("arrayPresFinal", JSON.stringify(pozos));
+  presupuestoTotal = presupuestoTotal + JSON.parse($("#precioPozo").val()) ;
+  $("#presupuestoTotal").hide().html(`<div id="div3" class="text-light">  <h3>Presupuesto Total: ${presupuestoTotal} </h3>  </div>`);
+
+  $("#h3DePozos").append(
+    `<h3>Pozo: ${$("#nombrePozo").val()}; Valor: USD ${$(
+      "#precioPozo"
+    ).val()}</h3>`);
 }
 
 
+let i = 0;
+$("#btnPresFinal").click(addPresFinal);
+function addPresFinal(e) {
+  e.preventDefault();
 
-// -------------------------Finalización Botón submit con jQuery------------------------------------
+  let arrayPres = JSON.parse(localStorage.getItem("arrayPresFinal"));
+  let guardados = JSON.parse(localStorage.getItem("guardados"));
+  if (guardados == undefined) {
+    let guardados = {};
+    guardados["Presupuesto " + i] = arrayPres;
+    guardarLocalValores("guardados", JSON.stringify(guardados));
+   //Nuevo
+    arrayPres = [];
+    pozos = [];
+    i++;
+   
+    $("#h3DePozos").empty();
+    $("#presupuestoTotal").show();
+    presupuestoTotal = 0;
 
-         // ------------------------------BOTON MOSTRAR PRESUPUESTO CON JQUERY-------------
 
-        //  $("#botonMostrarPresupuesto").click (function(e){
-        //      e.preventDefault();
-        //      let sumaAlApretarBoton = 0;
-        //      console.log (typeof sumaAlApretarBoton);
-        //      for (let k=0 ; k < localStorage.length; k++){
+  } else {
+      guardados["Presupuesto " + i] = arrayPres;
+      localStorage.setItem("guardados", JSON.stringify(guardados));
+      arrayPres = [];
+      i++;
+      localStorage.setItem("arrayPresFinal", JSON.stringify(arrayPres));
+      //Nuevo
+      pozos = [];
+     
+      $("#h3DePozos").empty();
+      $("#presupuestoTotal").show();
+      presupuestoTotal = 0;
+    }
     
-        //         let claveJson =localStorage.key(k);
-        //         console.log(typeof claveJson );
-        //         let claveParseada = JSON.parse(localStorage.getItem(claveJson));
-        //         console.log(typeof claveParseada );
+  
+}
 
-        //         sumaAlApretarBoton = sumaAlApretarBoton  + claveParseada; 
-        //         console.log(typeof sumaAlApretarBoton );
-        //     }
-            
-        //     $("#tituloPrincipalIndex").html(`El presupuesto total ingresado es de: USD ${sumaAlApretarBoton}`).hide().fadeIn(1500);
-        //  })
-         
-// ------------------------------FINALIZACIÓN BOTON MOSTRAR PRESUPUESTO CON JQUERY-------------     
+$("#btnHistorial").click (addHistorial);
+function addHistorial (e){
+  // $("#seccionHistorialId").hide().slideDown(1500);
+  e.preventDefault();
+  $("#seccionHistorialId").html(
+    `<h2 class="text-danger mb-3 pb-0 pt-3 ms-3">Historial de Presupuestos</h2>`
+  ).hide().slideDown(1500);
+  
+  let almacenadoHistorial = JSON.parse(localStorage.getItem("guardados"));
 
+  for (const propiedad in almacenadoHistorial){
+    $("#seccionHistorialId").append(`<div class="text-light">
+                   <h3 class="text-primary mb-0 pb-0"> ${propiedad}: </h3>
+                              </div>`).hide().slideDown(1000);
 
-// -------------------------------BOTON BORRAR CON JQUERY-------------
-// $("#botonBorrar").click (function(e){
-//     e.preventDefault();
-//     $("#tituloPrincipalIndex").html(`Gracias por utilizar el servicio.`).hide().fadeIn(1500);
-//     $("#h3DePozos").empty();
-//     localStorage.clear();
-//     $("#h3DePozos").prepend (`<div id="div1">
-//                                 <h3> Borrado correctamente </h3>
-//                                 </div>`);
-//    $("#div1").hide().fadeIn(1500);    
-             
-//    $( "#botonBorrar" )
-//       .animate({
-//         height: "toggle",
-//         opacity: "toggle"
-//       })
-//       $( "#botonMostrarPresupuesto" )
-//       .animate({
-//         height: "toggle",
-//         opacity: "toggle"
-//       })
-// })
+    sacarPozos = almacenadoHistorial[propiedad];  
+    let sumaParcial = 0;
+    for (let h=0; h<sacarPozos.length; h++){
+      
+      sumaParcial = sumaParcial + sacarPozos[h].valor;
+      $("#seccionHistorialId").append(`<div class="text-light">
+                  
+                   <h3 class="mb-0 pb-0">Pozo: ${sacarPozos[h].nombre}---Valor: USD  ${sacarPozos[h].valor}</h3>
+                              </div>`).hide().slideDown(1000);
 
-// -------------------------------FINALIZACIÓN BOTON BORRAR CON JQUERY-------------
+    }  
+    $("#seccionHistorialId").append(`<div class="text-light">
+    <h3 class="text-success mb-0 pb-0">TOTAL: USD ${sumaParcial} </h3>
+              </div>`).hide().slideDown(1000);
+
+  }
+
+}
 
