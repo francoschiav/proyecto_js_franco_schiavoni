@@ -13,15 +13,14 @@ class Pozo {
 const guardarLocalValores = (clave, valor) => {
   localStorage.setItem(clave, valor);
 };
-// let array1 = [5, 12, 8, 130, 44];
-// let found = array1.find(element => element > 10);
-// console.log(found);
+
 
 $("form").submit(addPozo);
 
 function addPozo(e) {
   e.preventDefault();
     pozos.push(new Pozo($("#nombrePozo").val(), $("#precioPozo").val()));
+    guardarLocalValores("arrayPresFinal", JSON.stringify(pozos));
     presupuestoTotal = presupuestoTotal + JSON.parse($("#precioPozo").val()) ;
     $("#presupuestoTotal").hide().html(`<div id="div3" class="text-light">  <h3>Presupuesto Total: ${presupuestoTotal} </h3>  </div>`)
     $("#h3DePozos").append(
@@ -35,38 +34,56 @@ let i = 0;
 $("#btnPresFinal").click(addPresFinal);
 function addPresFinal(e) {
   e.preventDefault();
+  if ( presupuestoTotal ==0){
+    Swal.fire(
+      'Usted no ha ingresado nada aún',
+      'Ingrese valores y presione Submit',
+      'error'
+    )
+  } else{
+          let arrayPres = JSON.parse(localStorage.getItem("arrayPresFinal"));
+      let guardados = JSON.parse(localStorage.getItem("guardados"));
+      if (guardados == undefined) {
+            let guardados = {};
+            guardados["Presupuesto " + i] = arrayPres;
+            guardarLocalValores("guardados", JSON.stringify(guardados));
+          //Nuevo
+            arrayPres = [];
+            pozos = [];
+            i++;
+          
+            $("#h3DePozos").empty();
+            Swal.fire(
+              'Presupuesto creado',
+              `USD: ${presupuestoTotal}`,
+              'success'
+            )
+            // $("#presupuestoTotal").show();
+            presupuestoTotal = 0;
 
-  let arrayPres = JSON.parse(localStorage.getItem("arrayPresFinal"));
-  let guardados = JSON.parse(localStorage.getItem("guardados"));
-  if (guardados == undefined) {
-    let guardados = {};
-    guardados["Presupuesto " + i] = arrayPres;
-    guardarLocalValores("guardados", JSON.stringify(guardados));
-   //Nuevo
-    arrayPres = [];
-    pozos = [];
-    i++;
-   
-    $("#h3DePozos").empty();
-    $("#presupuestoTotal").show();
-    presupuestoTotal = 0;
-
-
-  } else {
-      guardados["Presupuesto " + i] = arrayPres;
-      localStorage.setItem("guardados", JSON.stringify(guardados));
-      arrayPres = [];
-      i++;
-      localStorage.setItem("arrayPresFinal", JSON.stringify(arrayPres));
-      //Nuevo
-      pozos = [];
-     
-      $("#h3DePozos").empty();
-      $("#presupuestoTotal").show();
-      presupuestoTotal = 0;
-    }
-    
+      } else {
+              guardados["Presupuesto " + i] = arrayPres;
+              localStorage.setItem("guardados", JSON.stringify(guardados));
+              arrayPres = [];
+              i++;
+              localStorage.setItem("arrayPresFinal", JSON.stringify(arrayPres));
+              //Nuevo
+              pozos = [];
+            
+              $("#h3DePozos").empty();
+              Swal.fire(
+                'Presupuesto creado',
+                `USD: ${presupuestoTotal}`,
+                'success'
+              )
+            
+              // $("#presupuestoTotal").show();
+              presupuestoTotal = 0;
+        }
+  }
   
+
+     
 }
 
 $("#btnHistorial").click (addHistorial);
@@ -75,31 +92,40 @@ function addHistorial (e){
   e.preventDefault();
   $("#seccionHistorialId").html(
     `<h2 class="text-danger mb-3 pb-0 pt-3 ms-3">Historial de Presupuestos</h2>`
-  ).hide().slideDown(1500);
+  ).hide().fadeIn("slow");
   
   let almacenadoHistorial = JSON.parse(localStorage.getItem("guardados"));
 
   for (const propiedad in almacenadoHistorial){
     $("#seccionHistorialId").append(`<div class="text-light">
                    <h3 class="text-primary mb-0 pb-0"> ${propiedad}: </h3>
-                              </div>`).hide().slideDown(1000);
+                              </div>`).hide().fadeIn("slow");
 
     sacarPozos = almacenadoHistorial[propiedad];  
+    
     let sumaParcial = 0;
+    
     for (let h=0; h<sacarPozos.length; h++){
       
       sumaParcial = sumaParcial + sacarPozos[h].valor;
+      
       $("#seccionHistorialId").append(`<div class="text-light">
                   
                    <h3 class="mb-0 pb-0">Pozo: ${sacarPozos[h].nombre}---Valor: USD  ${sacarPozos[h].valor}</h3>
-                              </div>`).hide().slideDown(1000);
+                              </div>`).hide().fadeIn("slow");
 
     }  
     $("#seccionHistorialId").append(`<div class="text-light">
     <h3 class="text-success mb-0 pb-0">TOTAL: USD ${sumaParcial} </h3>
-              </div>`).hide().slideDown(1000);
+              </div>`).hide().fadeIn("slow");
 
   }
 
+
 }
 
+ $("#botonBorrar").click (deleteHistorial);
+ function deleteHistorial (e){
+   e.preventDefault();
+   localStorage.clear();
+ }
