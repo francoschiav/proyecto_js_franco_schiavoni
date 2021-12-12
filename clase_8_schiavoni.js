@@ -101,7 +101,7 @@ function addHistorial (e){
   for (const propiedad in almacenadoHistorial){
     $("#seccionHistorialId").append(`<div class="text-light">
                    <h3 class="text-primary mb-0 pb-0"> ${propiedad}: </h3>
-                              </div>`).hide().fadeIn("slow");
+                              </div>`).hide().slideDown("slow");
 
     sacarPozos = almacenadoHistorial[propiedad];  
     
@@ -114,7 +114,7 @@ function addHistorial (e){
       $("#seccionHistorialId").append(`<div class="text-light">
                   
                    <h3 class="mb-0 pb-0">Pozo: ${sacarPozos[h].nombre}---Valor: USD  ${sacarPozos[h].valor}</h3>
-                              </div>`).hide().fadeIn("slow");
+                              </div>`).hide().slideDown("slow");
 
     }  
     $("#seccionHistorialId").append(`<div class="text-light">
@@ -126,7 +126,7 @@ function addHistorial (e){
   $("#seccionHistorialId").append(`
               <button id="botonBorrar" class="btn btn-danger zindexeado mt-3"> Borrar Historial </button>
   
-              `).hide().fadeIn("slow");
+              `).hide().slideDown("slow");
 }
 
 //Finalización botón ver Historial
@@ -142,6 +142,7 @@ function addHistorial (e){
       )
       } else{
             localStorage.clear();
+            $("#seccionHistorialId").empty();
             Swal.fire(
               'Historial borrado con éxito',
               'Gracias por utilizar la aplicación',
