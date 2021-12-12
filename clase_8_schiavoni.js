@@ -2,6 +2,7 @@
 let sumaAlApretarBoton = 0;
 let presupuestoTotal = 0;
 let pozos = [];
+let cantidadPozos =0;
 
 class Pozo {
   constructor(nombre, valor) {
@@ -22,6 +23,7 @@ function addPozo(e) {
     pozos.push(new Pozo($("#nombrePozo").val(), $("#precioPozo").val()));
     guardarLocalValores("arrayPresFinal", JSON.stringify(pozos));
     presupuestoTotal = presupuestoTotal + JSON.parse($("#precioPozo").val()) ;
+    cantidadPozos = cantidadPozos + 1;
     $("#presupuestoTotal").hide().html(`<div id="div3" class="text-light">  <h3>Presupuesto Total: ${presupuestoTotal} </h3>  </div>`)
     $("#h3DePozos").append(
       `<h3>Pozo: ${$("#nombrePozo").val()}; Valor: USD ${$(
@@ -54,8 +56,10 @@ function addPresFinal(e) {
           
             $("#h3DePozos").empty();
             Swal.fire(
-              'Presupuesto creado',
-              `USD: ${presupuestoTotal}`,
+              `Presupuesto creado
+               Monto total: USD ${presupuestoTotal}
+               Cantidad de pozos: ${cantidadPozos}`,
+              'Puede continuar ingresando pozos para un nuevo presupuesto. Dirigirse a Historial para ver todos los presupuestos creados.',
               'success'
             )
             // $("#presupuestoTotal").show();
@@ -72,8 +76,8 @@ function addPresFinal(e) {
             
               $("#h3DePozos").empty();
               Swal.fire(
-                'Presupuesto creado',
-                `USD: ${presupuestoTotal}`,
+                `Presupuesto creado: USD ${presupuestoTotal}`,
+                'Puede continuar ingresando pozos para un nuevo presupuesto. Dirigirse a Historial para ver todos los presupuestos creados.',
                 'success'
               )
             
@@ -121,11 +125,31 @@ function addHistorial (e){
 
   }
 
+  $("#seccionHistorialId").append(`
+              <button id="botonBorrar" class="btn btn-danger zindexeado mt-3"> Borrar Historial </button>
+  
+              `).hide().fadeIn("slow");
 
 }
 
- $("#botonBorrar").click (deleteHistorial);
- function deleteHistorial (e){
-   e.preventDefault();
-   localStorage.clear();
- }
+ $("#seccionHistorialId").on ("click", "#botonBorrar", function(){
+ 
+  if (localStorage.length ==0){
+  Swal.fire(
+    'El Historial ya se encuentra vacío',
+    '',
+    'error'
+  )
+} else{
+  localStorage.clear();
+  Swal.fire(
+    'Historial borrado con éxito',
+    'Gracias por utilizar la aplicación',
+    'success'
+  )
+}
+
+ });
+ 
+
+ 

@@ -30,7 +30,7 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    padding: 280px 0 220px;
+    padding: 100px 0 220px;
   }
   .mainIndex::before {
     content: "";
@@ -145,3 +145,4 @@ header{
   font-weight: bold;
   text-align: left;
 }
+
