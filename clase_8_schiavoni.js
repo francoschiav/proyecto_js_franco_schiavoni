@@ -15,9 +15,8 @@ const guardarLocalValores = (clave, valor) => {
   localStorage.setItem(clave, valor);
 };
 
-
+//Inicio botón Submit donde se irá cargando cada nombre de pozo y cada valor de pozo.
 $("form").submit(addPozo);
-
 function addPozo(e) {
   e.preventDefault();
     pozos.push(new Pozo($("#nombrePozo").val(), $("#precioPozo").val()));
@@ -30,8 +29,9 @@ function addPozo(e) {
         "#precioPozo"
       ).val()}</h3>`);
  }
+//Finañización Botón submit donde se irá cargando cada nombre de pozo y cada valor de pozo.
 
-
+//Inicio botón Presupuesto Total donde se verá el presupuesto total de los pozos cargados
 let i = 0;
 $("#btnPresFinal").click(addPresFinal);
 function addPresFinal(e) {
@@ -84,15 +84,13 @@ function addPresFinal(e) {
               // $("#presupuestoTotal").show();
               presupuestoTotal = 0;
         }
-  }
-  
-
-     
+  }    
 }
+//Finalización botón Presupuesto Total donde se verá el presupuesto total de los pozos cargados
 
+//Inicio boton ver Historial. El mismo se encuentra en el nav bar y hace que se despliegue el historial abajo de la página 
 $("#btnHistorial").click (addHistorial);
 function addHistorial (e){
-  // $("#seccionHistorialId").hide().slideDown(1500);
   e.preventDefault();
   $("#seccionHistorialId").html(
     `<h2 class="text-danger mb-3 pb-0 pt-3 ms-3">Historial de Presupuestos</h2>`
@@ -124,32 +122,32 @@ function addHistorial (e){
               </div>`).hide().fadeIn("slow");
 
   }
-
+//Acá se agrega un botón "Borrar Historial" una vez que se despliega el menu:
   $("#seccionHistorialId").append(`
               <button id="botonBorrar" class="btn btn-danger zindexeado mt-3"> Borrar Historial </button>
   
               `).hide().fadeIn("slow");
-
 }
 
+//Finalización botón ver Historial
+
+
+//Inicio función del botón borrar historial que se agrega por DOM al desplegar el Historial. Al hace click se limpia el localStorage.
  $("#seccionHistorialId").on ("click", "#botonBorrar", function(){
- 
   if (localStorage.length ==0){
-  Swal.fire(
-    'El Historial ya se encuentra vacío',
-    '',
-    'error'
-  )
-} else{
-  localStorage.clear();
-  Swal.fire(
-    'Historial borrado con éxito',
-    'Gracias por utilizar la aplicación',
-    'success'
-  )
-}
-
+      Swal.fire(
+        'El Historial ya se encuentra vacío',
+        '',
+        'error'
+      )
+      } else{
+            localStorage.clear();
+            Swal.fire(
+              'Historial borrado con éxito',
+              'Gracias por utilizar la aplicación',
+              'success')
+            }
  });
- 
+//Finalicación función del botón borrar historial
 
  
